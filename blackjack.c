@@ -7,15 +7,13 @@ void startGame(); // Starts the game!
 
 int main(){
     int choice;
-    //int Deck[]={1,2,3,4,5,6,7,8,9,10,10,10,10}; //1-13 (11-J, 12-Q, 13-K) Cards!
-    //int dealersum=0,playersum=0;
-
-
-    printf("********* Welcome to BlackJack Game in C! ********");
-    printf("\n\n1.Start Game \n2.Rules of the game\t ");
+    int again = 1;
+do
+{
+    printf("\n\n********* Welcome to BlackJack Game in C! ********");
+    printf("\n\n1.Start Game \n2.Rules of the game:\n==>");
     scanf("%d",&choice);
-    switch (choice)
-    {
+    switch (choice){
     case 1:
         startGame();
         break;
@@ -26,6 +24,10 @@ int main(){
         printf("Some error occured!\n");
         break;
     }
+    printf("Want to play again?\n1.Yes\n2.No\n==>");
+    scanf("%d",&again);
+} while (again == 1);
+    printf("\n********* Thank you for playing Blackjack in C! ********\n\n");
     return 0;
 }
 
@@ -53,11 +55,11 @@ void startGame(){
         printf("\nPlayer Draws %d Card\n",Deck[r_num]);
         if (Deck[r_num] == 1){
             if (playersum <= 10){
+                
                 playersum += 11;
             }else{
                 playersum += 1;
             }
-            
         }else{
             playersum += Deck[r_num];
         }
@@ -67,7 +69,7 @@ void startGame(){
         if(playersum < 21){
             printf("\n==============================");
             printf("\n1.Hit\n2.Stay\n");
-            printf("==============================\n");
+            printf("==============================\n==>");
             scanf("%d",&cho);
             if(cho == 1){
                 hit = 0;
@@ -77,6 +79,7 @@ void startGame(){
         }
     }while(playersum < 21 && hit == 0);
     printf("\nPlayers sum is: %d\n",playersum);
+    printf("------------------------------");
 
     while (dealersum<17)
     {
@@ -98,12 +101,6 @@ void startGame(){
     }
     printf("\n==============================");
 
-    //      CHECK ACE COUNT     //
-    
-
-
-
-
     //      CHECK WHO WINS      //
 
     if(playersum > 21){
@@ -115,6 +112,5 @@ void startGame(){
     }else{
         printf("\n\tYou win!");
     }
-    printf("\n==============================");
-
+    printf("\n==============================\n\n");
 }
